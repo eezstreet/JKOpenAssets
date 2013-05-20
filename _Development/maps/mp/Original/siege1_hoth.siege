@@ -1,0 +1,150 @@
+//This file should never exceed 16384 bytes.
+
+Teams
+{
+	team1 Imperial
+	team2 Rebel
+}
+
+mapgraphic "gfx/mplevels/siege1_hoth"
+
+roundbegin_target "droidhead"
+//this is a global target, it will be fired off if there is one when the round begins (this happens
+//when there is at least 1 player on each team active)
+
+//All message strings, like message_team1, wonround, etc. can be striped references by having the first char as @.
+
+Imperial
+{
+	RequiredObjectives 1 								//How many objectives must this team complete before winning the round?
+	Timed 600 										//this team has 120 seconds to complete its objectives, otherwise the other team wins.
+	UseTeam "Siege1_Imperials" 							//Specifies the name of team "theme" to use
+
+	Objective1
+	{
+		goalname "@SIEGE_1_HOTH_IMP_OBJ1"
+		final -1 									//If 1, the round is won instantly for completeing this goal. If 0, counts toward total number of goals required. If -1, does not count toward the number of final goals.
+		message_team1 "@SIEGE_1_HOTH_IMP_OBJ1_COMP_TEAM1"		//Printed for team1 when this objective is completed.
+		message_team2 "@SIEGE_1_HOTH_IMP_OBJ1_COMP_TEAM2"		//same as above, for team2.
+		target obj1_complete_imperial 					//Will use this target when this objective is completed. Remove this line for nothing.
+		sound_team1 "sound/chars/protocol/misc/siege2.mp3" 		//upon completion of objective, play this sound for team1. If you want no sound, remove this line.
+		sound_team2 "sound/chars/protocol/misc/siege6.mp3" 		//same, for team2.
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/imp_objective1" 			//graphic to display for objective
+		mapicon "gfx/mp/siege_secondary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+	Objective2
+	{
+		goalname "@SIEGE_1_HOTH_IMP_OBJ2"
+		final -1
+		message_team1 "@SIEGE_1_HOTH_IMP_OBJ2_COMP_TEAM1"
+		message_team2 "@SIEGE_1_HOTH_IMP_OBJ2_COMP_TEAM2"
+		target obj1_complete_imperial
+		sound_team1 "sound/chars/protocol/misc/siege2.mp3"
+		sound_team2 "sound/chars/protocol/misc/siege6.mp3"
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/imp_objective2" 			//graphic to display for objective
+		mapicon "gfx/mp/siege_secondary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+	Objective3
+	{
+		goalname "@SIEGE_1_HOTH_IMP_OBJ3"
+		final -1
+		message_team1 "@SIEGE_1_HOTH_IMP_OBJ3_COMP_TEAM1"
+		message_team2 "@SIEGE_1_HOTH_IMP_OBJ3_COMP_TEAM2"
+		target obj1_complete_imperial
+		sound_team1 "sound/chars/protocol/misc/siege2.mp3"
+		sound_team2 "sound/chars/protocol/misc/siege6.mp3"
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/imp_objective3" 			//graphic to display for objective
+		mapicon "gfx/mp/siege_secondary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+	Objective4
+	{
+		goalname "SIEGE_1_HOTH_IMP_OBJ4"
+		final -1
+		message_team1 "@SIEGE_1_HOTH_IMP_OBJ4_COMP_TEAM1"
+		message_team2 "@SIEGE_1_HOTH_IMP_OBJ4_COMP_TEAM2"
+		target obj1_complete_imperial
+		sound_team1 "sound/chars/protocol/misc/siege2.mp3"
+		sound_team2 "sound/chars/protocol/misc/siege6.mp3"
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/imp_objective4" 			//graphic to display for objective
+		mapicon "gfx/mp/siege_secondary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+	Objective5
+	{
+		goalname "@SIEGE_1_HOTH_IMP_OBJ5"
+		final 1
+		message_team1 "@SIEGE_1_HOTH_IMP_OBJ5_COMP_TEAM1"
+		message_team2 "@SIEGE_1_HOTH_IMP_OBJ5_COMP_TEAM2"
+		target obj1_complete_imperial
+		sound_team1 "sound/chars/protocol/misc/siege1.mp3"
+		sound_team2 "sound/chars/protocol/misc/siege5.mp3"
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/imp_prime_obj" 				//graphic to display for objective
+		mapicon "gfx/mp/siege_primary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+
+
+	wonround "@SIEGE_1_HOTH_IMP_WON"						//Printed to this team if they won the round.
+	lostround "@SIEGE_1_HOTH_IMP_LOST" 						//Printed to this team if they lost the round.
+
+	roundover_sound_wewon "sound/chars/protocol/misc/40MOM014.mp3" 	//sounds are optional, don't put entries for them if you don't want them autoplayed.
+	roundover_sound_welost "sound/chars/protocol/misc/40MOM012.mp3"
+
+	roundover_target "siegeend" 							//object to use if this team won - ideally ending up on a target_saga_end
+
+	attackers 1 									//this actually does not affect the mission, but the bot AI will use the knowledge to decide on how to act.
+
+	briefing "@SIEGE_1_HOTH_IMP_BRIEF" 						//Displayed on the mission briefing menu.
+}
+
+Rebel
+{
+	RequiredObjectives 0
+	UseTeam "Siege1_Rebels"
+
+	Objective1
+	{
+		goalname "@SIEGE_1_HOTH_REB_OBJ1"
+		final 1
+		message_team2 "@SIEGE_1_HOTH_REB_OBJ1_COMP_TEAM2"
+		message_team1 "@SIEGE_1_HOTH_REB_OBJ1_COMP_TEAM1"
+		target obj1_complete_rebel
+		sound_team1 "sound/chars/protocol/misc/siege5.mp3"
+		sound_team2 "sound/chars/protocol/misc/siege1.mp3"
+
+		objdesc "Blah" 								//text description of objective
+		objgfx "gfx/mplevels/hoth/reb_prime_obj" 				//graphic to display for objective
+		mapicon "gfx/mp/siege_primary"					//what graphic to display on the mapgraphic
+		mappos "500 140 32 32"							//what location to display
+	}
+
+	wonround "@SIEGE_1_HOTH_REB_WON"
+	lostround "@SIEGE_1_HOTH_REB_LOST"
+
+	roundover_sound_wewon "sound/chars/protocol/misc/40MOM013.mp3"
+	roundover_sound_welost "sound/chars/protocol/misc/40MOM012.mp3"
+
+	roundover_target "siegeend"
+
+	attackers 0
+
+	briefing "@SIEGE_1_HOTH_REB_BRIEF"
+}
