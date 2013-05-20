@@ -1,0 +1,1 @@
+del /F /S /Q *.bsp *.nav *.prt *.srf
