@@ -2,7 +2,9 @@
 :: This script make a .pk3 with the needed files and also launch jedi academy with devmap your_map
 @echo off
 title Test_Map.pk3
+
 :Map_Name
+
 cls
 echo.
 echo ---------------
@@ -11,10 +13,15 @@ echo example to launch test_map.bsp located in maps/OpenJK/mp/ just type : OpenJ
 echo you can also launch original map like mp/ffa2.
 echo ---------------
 echo.
+
+:Start
+
 set /p map=Map name: 
 Set map=%map:\=/%
 cls
-:choose
+
+:Choose
+
 echo.
 echo map is %map% :
 echo.
@@ -29,30 +36,44 @@ echo  q : Exit
 echo ---------------
 echo.
 echo.
-set /p choice=Your choice : 
+set /p Choice=Your choice : 
 echo.
 echo.
-if not %choice%=='' set choice=%choice:~0,1%
-if %choice%==1 goto Original
-if %choice%==2 goto Test_Map
-if %choice%==3 goto Map_Name
-if %choice%==q exit
+if not %Choice%=='' set Choice=%Choice:~0,1%
+if %Choice%==1 goto Original
+if %Choice%==2 goto Test_Map
+if %Choice%==3 goto Map_Name
+if %Choice%==q exit
 cls
-echo  %choice% Is invalid
+echo  %Choice% Is invalid
 echo.
 echo.
-goto choose
+goto Choose
+
 :Test_Map
+
 cd Base
-del /F /S /Q Test_Map.pk3
-start /wait ../7za a Test_Map.zip maps/%map%.bsp
-ren Test_Map.zip Test_Map.pk3
-cd ..
+
+	if not exist maps/%map%.bsp (
+		cls
+		echo.
+		echo Invalid map name %map%, no bsp found
+		echo.
+		cd ..
+		goto Start
+	) else (
+		del /F /S /Q Test_Map.pk3
+		start /wait ../7za a Test_Map.zip maps/%map%.bsp
+		ren Test_Map.zip Test_Map.pk3
+		cd ..
+	)
+
 :Original
-if exist openjk.x86.exe (
-openjk.x86.exe +set fs_homepath . +devmap %map%
-exit
-) else (
-jamp.exe +devmap %map%
-exit
-)
+
+	if exist openjk.x86.exe (
+		openjk.x86.exe +set fs_homepath . +devmap %map%
+		exit
+	) else (
+		jamp.exe +devmap %map%
+		exit
+	)
