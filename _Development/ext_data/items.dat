@@ -542,7 +542,7 @@ classname	item_bacta
 worldmodel	models/items/bacta.md3
 icon		gfx/hud/i_icon_bacta
 count		25
-type		IT_HEALTH
+type		IT_BACTA
 tag			ITM_MEDPAK_PICKUP
 max		 	8  8 16
 min			-8 -8 -0
